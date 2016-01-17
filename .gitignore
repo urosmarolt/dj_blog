@@ -1,2 +1,6 @@
 #settings 
 django_app/settings.py
+
+#django files 
+.idea/*
+django_app/__pycache__
