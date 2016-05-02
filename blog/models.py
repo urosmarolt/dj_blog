@@ -3,7 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
-
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 class PublishedManager(models.Manager):
@@ -56,3 +57,38 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment by {} on {}'.format(self.name, self.post)
+
+class Review(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('scheduled', 'Scheduled'),
+        ('published', 'Published'),
+    )
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250, unique_for_date='publish')
+    author = models.ForeignKey(User, related_name='review_posts')
+    body = models.TextField()
+    image = models.ImageField(upload_to='blog/static/uploads', default='blog/static/uploads/douche1.jpg')
+    thumbnail = ProcessedImageField(upload_to='static/thumbnails',
+                                    processors=[ResizeToFill(100, 50)],
+                                    format='JPEG',
+                                    options={'quality': 60},
+                                    default='blog/static/thumbnails/douche1.jpg'
+                                    )
+    publish = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+
+    objects = models.Manager() # The default manager.
+    published = PublishedManager() # Our custom manager.
+
+    class Meta:
+        ordering = ('-publish',)
+
+    def get_absolute_url(self):
+        return reverse('blog:review_detail',
+                       args=[self.slug])
+
+    def __str__(self):
+        return self.title

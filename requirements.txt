@@ -6,3 +6,6 @@ Pillow
 django-imagekit
 pytz
 django-taggit
+Markdown
+django-haystack
+pysolr

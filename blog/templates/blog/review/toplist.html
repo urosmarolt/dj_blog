@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block title %}Toplist{% endblock %}
+
+{% block toplist %}
+<div class="row">
+     <div class="col-lg-12">
+        <h2 class="page-header">Portfolio Heading</h2>
+    </div>
+    {% for review in reviews %}
+    <div class="col-md-4 col-sm-6">
+        <a href="{{ review.get_absolute_url }}">
+            <img class="img-responsive img-portfolio img-hover" src="{{ review.image }}" alt="">
+       </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
