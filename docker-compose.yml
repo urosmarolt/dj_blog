@@ -1,5 +1,5 @@
 solr:
-  image: mysolr
+  image: urosmarolt/mysolr
   ports:
     - "8983:8983"
 db:
