@@ -1,37 +1,51 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
+from django.template import RequestContext
 from .models import Post, Comment, Review
 from django.db.models import Count
 from .forms import EmailPostForm, CommentForm, SearchForm
+from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.views.generic import ListView
 from taggit.models import Tag
 from haystack.query import SearchQuerySet
+from django.views.generic.base import RedirectView
+
 
 class ReviewListView(ListView):
     queryset = Review.published.all()
     context_object_name = 'reviews'
-    paginate_by = 3
-    template_name = 'blog/post/toplist.html'
+    paginate_by = 6
+    template_name = 'blog/review/toplist.html'
 
-def review_list(request):
+def _get_review(review_page):
     object_list = Review.published.all()
-
-    paginator = Paginator(object_list, 3) # 3 posts in each page
-    page = request.GET.get('page')
+    paginator = Paginator(object_list, 6)  #
     try:
-        reviews = paginator.page(page)
+        reviews = paginator.page(review_page)
     except PageNotAnInteger:
         # If page is not an integer deliver the first page
-        posts = paginator.page(1)
+        reviews = paginator.page(1)
     except EmptyPage:
         # If page is out of range deliver last page of results
         reviews = paginator.page(paginator.num_pages)
-    return render(request,
-                  'blog/post/toplist.html',
-                  {'page': page,
-                   'reviews': reviews})
+    return reviews
 
+def review_list(request):
+    page = request.GET.get("page")
+    reviews = _get_review(page)
+    return render(request,
+                  'blog/review/toplist.html',
+                  {'page': page,
+                   'reviews': reviews,
+                   "meta": reviews.as_meta(request)
+                   })
+
+def _get_featured_review():
+    return get_object_or_404(Review, featured=True)
+
+def _get_slider_data():
+    return Review.published.filter(slider__gt=0).order_by('slider')
 
 class PostListView(ListView):
     queryset = Post.published.all()
@@ -43,6 +57,10 @@ class PostListView(ListView):
 def post_list(request, tag_slug=None):
     object_list = Post.published.all()
     tag = None
+    reviews_page = request.GET.get("review_page")
+    reviews = _get_review(reviews_page)
+    featured_review = _get_featured_review()
+
 
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
@@ -62,7 +80,20 @@ def post_list(request, tag_slug=None):
                   'blog/post/list.html',
                   {'page': page,
                    'posts': posts,
-                   'tag': tag})
+                   'tag': tag,
+                   'reviews': reviews,
+                   'reviews_page': reviews_page,
+                   'featured_review': featured_review,
+                   'slider_reviews': _get_slider_data(),
+                   })
+
+def review_detail(request, review):
+    review = get_object_or_404(Review, slug=review,
+                             status='published')
+    return render(request,
+                  'blog/review/detail.html',
+                  {'review': review})
+
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post,
@@ -71,8 +102,9 @@ def post_detail(request, year, month, day, post):
                                    publish__month=month,
                                    publish__day=day)
 
+
     # List of active comments for this post
-    comments = post.comments.filter(active=True)
+    comments = post.comments.filter(active=True).order_by('-created')
 
     if request.method == 'POST':
         # A comment was posted
@@ -97,7 +129,9 @@ def post_detail(request, year, month, day, post):
                   {'post': post,
                    'comments': comments,
                    'comment_form': comment_form,
-                   'similar_posts': similar_posts})
+                   'similar_posts': similar_posts,
+                   "meta": post.as_meta(request)
+                   })
 
 def post_share(request, post_id):
     # Retrieve post by id
@@ -124,6 +158,9 @@ def post_share(request, post_id):
 
 def post_search(request):
     form = SearchForm()
+    cd = {}
+    results = {}
+    total_results = {}
     if 'query' in request.GET:
         form = SearchForm(request.GET)
         if form.is_valid():
@@ -131,6 +168,7 @@ def post_search(request):
             cd = form.cleaned_data
             results = SearchQuerySet().models(Post)\
                           .filter(content=cd['query']).load_all()
+
             # count total results
             total_results = results.count()
     return render(request,
@@ -139,3 +177,13 @@ def post_search(request):
                    'cd': cd,
                    'results': results,
                    'total_results': total_results})
+
+class RedirectPlay(RedirectView):
+
+    permanent = False
+    query_string = True
+    pattern_name = 'play_redirect'
+
+    def get_redirect_url(self, review):
+        review = get_object_or_404(Review, slug=review)
+        return review.tracking_link

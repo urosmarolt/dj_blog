@@ -25,3 +25,11 @@ def get_most_commented_posts(count=5):
 @register.filter(name='markdown')
 def markdown_format(text):
     return mark_safe(markdown.markdown(text))
+
+@register.filter(name='get_range')
+def get_range(value):
+    return range(value)
+
+@register.filter(name='substract')
+def substract(value):
+    return 10-value

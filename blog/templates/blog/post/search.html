@@ -6,8 +6,11 @@
   {% if "query" in request.GET %}
     <h1>Posts containing "{{ cd.query }}"</h1>
     <h3>Found {{ total_results }} result{{ total_results|pluralize }}</h3>
+{{ results }}
     {% for result in results %}
+        {{result}}
       {% with post=result.object %}
+  {{ post }}
         <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
         {{ post.body|truncatewords:5 }}
       {% endwith %}

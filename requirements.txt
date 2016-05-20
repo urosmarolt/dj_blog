@@ -9,3 +9,8 @@ django-taggit
 Markdown
 django-haystack
 pysolr
+django-extensions
+werkzeug
+django-sitetree
+django-markdownx
+django-meta

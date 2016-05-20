@@ -1,50 +1,143 @@
-{% extends "blog/base.html" %}
 {% load blog_tags %}
-{% block title %}{{ post.title }}{% endblock %}
+{% load staticfiles %}
+{% load sitetree %}
 
-{% block content %}
-  <h1>{{ post.title }}</h1>
-  <p class="date">
-    Published {{ post.publish }} by {{ post.author }}
-  </p>
-  {{ post.body|markdown }}
-  <p>
-  <a href="{% url "blog:post_share" post.id %}">
-    Share this post
-  </a>
-</p>
-<h2>Similar posts</h2>
-{% for post in similar_posts %}
-  <p>
-    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-  </p>
-{% empty %}
-  There are no similar posts yet.
-{% endfor %}
-{% with comments.count as total_comments %}
-  <h2>
-    {{ total_comments }} comment{{ total_comments|pluralize }}
-  </h2>
-{% endwith %}
-{% for comment in comments %}
-  <div class="comment">
-    <p class="info">
-      Comment {{ forloop.counter }} by {{ comment.name }}
-      {{ comment.created }}
-    </p>
-    {{ comment.body|linebreaks }}
-  </div>
-{% empty %}
-  <p>There are no comments yet.</p>
-{% endfor %}
-{% if new_comment %}
-  <h2>Your comment has been added.</h2>
-{% else %}
-  <h2>Add a new comment</h2>
-  <form action="." method="post">
-    {{ comment_form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" value="Add comment"></p>
-  </form>
-{% endif %}
+{% block header %}
+    {% include "blog/partial/header.html" %}
 {% endblock %}
+
+<body>
+
+    <!-- Navigation -->
+    {% block navigation %}
+        {% sitetree_menu from "main_menu" include "trunk,topmenu" template "blog/navigation/main_menu.html" %}
+    {% endblock %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{ post.title }}
+                </h1>
+                <p class="date">
+                    Published {{ post.publish }} by {{ post.author }}
+                </p>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li class="active">Sidebar Page</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Sidebar Column -->
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="index.html" class="list-group-item">Home</a>
+                    <a href="about.html" class="list-group-item">About</a>
+                    <a href="services.html" class="list-group-item">Services</a>
+                    <a href="contact.html" class="list-group-item">Contact</a>
+                    <a href="portfolio-1-col.html" class="list-group-item">1 Column Portfolio</a>
+                    <a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
+                    <a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
+                    <a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
+                    <a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>
+                    <a href="blog-home-1.html" class="list-group-item">Blog Home 1</a>
+                    <a href="blog-home-2.html" class="list-group-item">Blog Home 2</a>
+                    <a href="blog-post.html" class="list-group-item">Blog Post</a>
+                    <a href="full-width.html" class="list-group-item">Full Width Page</a>
+                    <a href="sidebar.html" class="list-group-item active">Sidebar Page</a>
+                    <a href="faq.html" class="list-group-item">FAQ</a>
+                    <a href="404.html" class="list-group-item">404</a>
+                    <a href="pricing.html" class="list-group-item">Pricing Table</a>
+                </div>
+                <div class="list-group ">
+                    <h4  class="list-group-item sidebar_block_header">Latest posts. Total  ({% total_posts %})</h4>
+                    {% show_latest_posts 3 %}
+                </div>
+                <div class="list-group">
+                    <h4 class="list-group-item sidebar_block_header">Most commented posts</h4>
+                    {% get_most_commented_posts as most_commented_posts %}
+                    {% for post in most_commented_posts %}
+                        <a href="{{ post.get_absolute_url }}" class="list-group-item">{{ post.title }} ({{post.total_comments}})</a>
+                    {% endfor %}
+                </div>
+                <div class="list-group">
+                    <h4 class="list-group-item sidebar_block_header" style="background-color: #337ab7">Similar posts</h4>
+                    {% for post in similar_posts %}
+                      <p>
+                        <a href="{{ post.get_absolute_url }}" class="list-group-item">{{ post.title }}</a>
+                      </p>
+                    {% empty %}
+                      There are no similar posts yet.
+                    {% endfor %}
+                </div>
+                <div class="list-group">
+                    <h4 class="list-group-item sidebar_block_header" style="background-color: #337ab7">Share this post</h4>
+                    <p>
+                      <a class="list-group-item" href="{% url "blog:post_share" post.id %}">
+                        Share this post
+                      </a>
+                    </p>
+                </div>
+            </div>
+            <!-- Content Column -->
+            <div class="col-md-9">
+                {% block content %}
+                  {{ post.body|markdown }}
+                <hr>
+
+                {% if new_comment %}
+                  <h2>Your comment has been added.</h2>
+                {% else %}
+                  <h2>Add a new comment</h2>
+                  <form action="." method="post">
+                    {{ comment_form.as_p }}
+                    {% csrf_token %}
+                    <p><button type="submit" class="btn btn-primary">Add Comment</button></p>
+                  </form>
+                {% endif %}
+                {% endblock %}
+                <div class="page-header">
+                    <h1><small class="pull-right">
+                        {% with comments.count as total_comments %}
+                          <h2>
+                            {{ total_comments }} comment{{ total_comments|pluralize }}
+                          </h2>
+                        {% endwith %}
+                    </small> Comments </h1>
+                  </div>
+                   <div class="comments-list">
+                       {% for comment in comments %}
+                       <div class="media">
+                           <p class="pull-right"><small>{{ comment.created }}</small></p>
+                            <a class="media-left" href="#">
+                              <img src="http://lorempixel.com/40/40/people/1/">
+                            </a>
+                            <div class="media-body">
+
+                              <h4 class="media-heading user_name">{{ comment.name }} says:</h4>
+                              {{ comment.body|linebreaks }}
+
+                              <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+                            </div>
+                       </div>
+                       {% empty %}
+                        <p>There are no comments yet.</p>
+                        {% endfor %}
+                   </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+{% block footer %}
+    {% include "blog/partial/footer.html" %}
+{% endblock %}
+

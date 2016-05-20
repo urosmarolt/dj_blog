@@ -5,13 +5,14 @@ from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from meta.models import ModelMeta
 
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
-class Post(models.Model):
+class Post(ModelMeta, models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('scheduled', 'Scheduled'),
@@ -20,6 +21,8 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, related_name='blog_posts')
+    meta_keywords = models.CharField(max_length=200)
+    meta_description = models.TextField()
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -29,6 +32,13 @@ class Post(models.Model):
 
     objects = models.Manager() # The default manager.
     published = PublishedManager() # Our custom manager.
+
+    _metadata = {
+        'title': 'title',
+        'description': 'meta_description',
+        'keywords': 'meta_keywords',
+        'author': 'author',
+    }
 
     class Meta:
         ordering = ('-publish',)
@@ -67,14 +77,26 @@ class Review(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, related_name='review_posts')
-    body = models.TextField()
+    featured = models.BooleanField(default=False)
+    slider = models.IntegerField()
+    meta_keywords = models.CharField(max_length=200, default="Meta Keywords")
+    meta_description = models.TextField(default="Meta Description")
+    tracking_link = models.CharField(max_length=250)
+    review_text = models.TextField(default="Review text")
+    general_info = models.TextField(default="General info")
+    ratings = models.IntegerField(default=10)
+    payment_methods = models.TextField(default="Payment methods")
     image = models.ImageField(upload_to='blog/static/uploads', default='blog/static/uploads/douche1.jpg')
+    review_banner = models.ImageField(upload_to='blog/static/uploads', default='blog/static/uploads/review_banner.jpg')
     thumbnail = ProcessedImageField(upload_to='static/thumbnails',
                                     processors=[ResizeToFill(100, 50)],
                                     format='JPEG',
                                     options={'quality': 60},
                                     default='blog/static/thumbnails/douche1.jpg'
                                     )
+    exclusive_bonus = models.TextField(default="Exclusive bonus")
+    match_bonus = models.TextField(default="Match bonus")
+    freespins = models.TextField(default="Freespins")
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -82,6 +104,13 @@ class Review(models.Model):
 
     objects = models.Manager() # The default manager.
     published = PublishedManager() # Our custom manager.
+
+    _metadata = {
+        'title': 'title',
+        'description': 'meta_description',
+        'keywords': 'meta_keywords',
+        'author': 'author',
+    }
 
     class Meta:
         ordering = ('-publish',)

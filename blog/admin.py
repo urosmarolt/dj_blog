@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Post, Comment, Review
+from pagedown.widgets import AdminPagedownWidget
+from django.db import models
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
@@ -16,13 +18,17 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'body')
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'author', 'publish', 'status')
+    list_display = ('title', 'slug', 'author', 'publish', 'status', 'featured', 'slider')
     list_filter = ('status', 'created', 'publish', 'author')
     search_fields = ('title', 'body')
     prepopulated_fields = {'slug': ('title',)}
     raw_id_fields = ('author',)
     date_hierarchy = 'publish'
     ordering = ['status', 'publish']
+
+    formfield_overrides = {
+        models.TextField: {'widget': AdminPagedownWidget},
+    }
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Review, ReviewAdmin)

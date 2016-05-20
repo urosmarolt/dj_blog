@@ -1,17 +1,32 @@
-{% extends "blog/base.html" %}
-{% block title %}Toplist{% endblock %}
-
-{% block toplist %}
+{% load blog_tags %}
 <div class="row">
      <div class="col-lg-12">
         <h2 class="page-header">Portfolio Heading</h2>
     </div>
     {% for review in reviews %}
-    <div class="col-md-4 col-sm-6">
-        <a href="{{ review.get_absolute_url }}">
-            <img class="img-responsive img-portfolio img-hover" src="{{ review.image }}" alt="">
-       </a>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <a href="/play/{{ review.slug }}">
+                <img src="{{ MEDIA_URL }}{{ review.image }}" alt="">
+            </a>
+            <div class="caption">
+                <h4 class="pull-right"></h4>
+                <h4><a href="/play/{{ review.slug }}">{{ review.title }}</a>
+                </h4>
+                <p>{{ review.meta_description|markdown|truncatewords:20 }}</p>
+            </div>
+            <div class="ratings">
+                <p class="pull-right"><!--TODO add number of comments--></p>
+                <p>
+                    {% for i in review.ratings|get_range %}
+                        <span class="glyphicon glyphicon-star"></span>
+                    {% endfor %}
+                    {% for i in review.ratings|substract|get_range %}
+                     <span class="glyphicon glyphicon-star-empty"></span>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>
-{% endblock %}
