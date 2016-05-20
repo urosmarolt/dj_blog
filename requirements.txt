@@ -14,3 +14,4 @@ werkzeug
 django-sitetree
 django-markdownx
 django-meta
+django-pagedown
