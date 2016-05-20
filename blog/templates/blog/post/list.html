@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load blog_tags %}
+{% load staticfiles %}
 {% block title %}Latest News{% endblock %}
 
 {% block news %}
@@ -29,6 +30,8 @@
                             </a>
                             {% if not forloop.last %}, {% endif %}
                           {% endfor %}
+                          Comments:
+                              {{ post.comments.count }}
                         </p>
     					<p class="date">
       						Published {{ post.publish }} by {{ post.author }}
