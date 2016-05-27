@@ -12,6 +12,10 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'
     ordering = ['status', 'publish']
 
+    formfield_overrides = {
+        models.TextField: {'widget': AdminPagedownWidget},
+    }
+
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'post', 'created', 'active')
     list_filter = ('active', 'created', 'updated')
@@ -38,6 +42,10 @@ class GameAdmin(admin.ModelAdmin):
     raw_id_fields = ('author',)
     date_hierarchy = 'publish'
     ordering = ['status', 'publish']
+
+    formfield_overrides = {
+        models.TextField: {'widget': AdminPagedownWidget},
+    }
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Review, ReviewAdmin)
