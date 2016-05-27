@@ -26,12 +26,12 @@
                         Tags:
                           {% for tag in post.tags.all %}
                             <a href="{% url "blog:post_list_by_tag" tag.slug %}">
-                              {{ tag.name }}
+                              <span class="label label-info">{{ tag.name }}</span>
                             </a>
-                            {% if not forloop.last %}, {% endif %}
+                            {% if not forloop.last %} {% endif %}
                           {% endfor %}
                           Comments:
-                              {{ post.comments.count }}
+                              <span class="badge">{{ post.comments.count }}</span>
                         </p>
     					<p class="date">
       						Published {{ post.publish }} by {{ post.author }}

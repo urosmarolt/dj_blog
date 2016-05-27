@@ -38,23 +38,9 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="index.html" class="list-group-item">Home</a>
-                    <a href="about.html" class="list-group-item">About</a>
-                    <a href="services.html" class="list-group-item">Services</a>
-                    <a href="contact.html" class="list-group-item">Contact</a>
-                    <a href="portfolio-1-col.html" class="list-group-item">1 Column Portfolio</a>
-                    <a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
-                    <a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
-                    <a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
-                    <a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>
-                    <a href="blog-home-1.html" class="list-group-item">Blog Home 1</a>
-                    <a href="blog-home-2.html" class="list-group-item">Blog Home 2</a>
-                    <a href="blog-post.html" class="list-group-item">Blog Post</a>
-                    <a href="full-width.html" class="list-group-item">Full Width Page</a>
-                    <a href="sidebar.html" class="list-group-item active">Sidebar Page</a>
-                    <a href="faq.html" class="list-group-item">FAQ</a>
-                    <a href="404.html" class="list-group-item">404</a>
-                    <a href="pricing.html" class="list-group-item">Pricing Table</a>
+                    {% block sidebar_toplist %}
+                        {% include "blog/partial/sidebar_toplist.html" %}
+                    {% endblock %}
                 </div>
                 <div class="list-group ">
                     <h4  class="list-group-item sidebar_block_header">Latest posts. Total  ({% total_posts %})</h4>
@@ -64,15 +50,13 @@
                     <h4 class="list-group-item sidebar_block_header">Most commented posts</h4>
                     {% get_most_commented_posts as most_commented_posts %}
                     {% for post in most_commented_posts %}
-                        <a href="{{ post.get_absolute_url }}" class="list-group-item">{{ post.title }} ({{post.total_comments}})</a>
+                        <a href="{{ post.get_absolute_url }}" class="list-group-item">{{ post.title }} <span class="badge">{{post.total_comments}}</span></a>
                     {% endfor %}
                 </div>
                 <div class="list-group">
                     <h4 class="list-group-item sidebar_block_header" style="background-color: #337ab7">Similar posts</h4>
                     {% for post in similar_posts %}
-                      <p>
                         <a href="{{ post.get_absolute_url }}" class="list-group-item">{{ post.title }}</a>
-                      </p>
                     {% empty %}
                       There are no similar posts yet.
                     {% endfor %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.template import RequestContext
-from .models import Post, Comment, Review
+from .models import Post, Comment, Review, Game
 from django.db.models import Count
 from .forms import EmailPostForm, CommentForm, SearchForm
 from django.http import HttpResponseRedirect
@@ -18,22 +18,10 @@ class ReviewListView(ListView):
     paginate_by = 6
     template_name = 'blog/review/toplist.html'
 
-def _get_review(review_page):
-    object_list = Review.published.all()
-    paginator = Paginator(object_list, 6)  #
-    try:
-        reviews = paginator.page(review_page)
-    except PageNotAnInteger:
-        # If page is not an integer deliver the first page
-        reviews = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range deliver last page of results
-        reviews = paginator.page(paginator.num_pages)
-    return reviews
 
 def review_list(request):
     page = request.GET.get("page")
-    reviews = _get_review(page)
+    reviews = Review.get_review(page)
     return render(request,
                   'blog/review/toplist.html',
                   {'page': page,
@@ -47,6 +35,35 @@ def _get_featured_review():
 def _get_slider_data():
     return Review.published.filter(slider__gt=0).order_by('slider')
 
+class GameListView(ListView):
+    queryset = Game.published.all()
+    context_object_name = 'games'
+    paginate_by = 6
+    template_name = 'blog/games/toplist.html'
+
+def _get_game(game_page):
+    object_list = Game.published.all()
+    paginator = Paginator(object_list, 6)  #
+    try:
+        games = paginator.page(game_page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        games = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        games = paginator.page(paginator.num_pages)
+    return games
+
+def game_list(request):
+    page = request.GET.get("page")
+    games = _get_game(page)
+    return render(request,
+                  'blog/games/list.html',
+                  {'page': page,
+                   'games': games,
+                   "meta": games.as_meta(request)
+                   })
+
 class PostListView(ListView):
     queryset = Post.published.all()
     context_object_name = 'posts'
@@ -55,11 +72,12 @@ class PostListView(ListView):
 
 
 def post_list(request, tag_slug=None):
-    object_list = Post.published.all()
+    object_list = Post.published.all().filter(post_type='post')
     tag = None
-    reviews_page = request.GET.get("review_page")
-    reviews = _get_review(reviews_page)
     featured_review = _get_featured_review()
+
+    games_page = request.GET.get("game_page")
+    games = _get_game(games_page)
 
 
     if tag_slug:
@@ -81,8 +99,8 @@ def post_list(request, tag_slug=None):
                   {'page': page,
                    'posts': posts,
                    'tag': tag,
-                   'reviews': reviews,
-                   'reviews_page': reviews_page,
+                   'games': games,
+                   'games_page': games_page,
                    'featured_review': featured_review,
                    'slider_reviews': _get_slider_data(),
                    })
@@ -94,14 +112,21 @@ def review_detail(request, review):
                   'blog/review/detail.html',
                   {'review': review})
 
+def game_detail(request, game):
+    game = get_object_or_404(Game, slug=game,
+                             status='published')
+    #
+    # reviews_page = request.GET.get("review_page")
+    # reviews = _get_review(reviews_page)
 
-def post_detail(request, year, month, day, post):
-    post = get_object_or_404(Post, slug=post,
-                                   status='published',
-                                   publish__year=year,
-                                   publish__month=month,
-                                   publish__day=day)
+    return render(request,
+                  'blog/games/detail.html',
+                  {'game': game,
+                   })
 
+
+def post_detail(request, post):
+    post = get_object_or_404(Post, slug=post)
 
     # List of active comments for this post
     comments = post.comments.filter(active=True).order_by('-created')
@@ -130,7 +155,7 @@ def post_detail(request, year, month, day, post):
                    'comments': comments,
                    'comment_form': comment_form,
                    'similar_posts': similar_posts,
-                   "meta": post.as_meta(request)
+                   "meta": post.as_meta(request),
                    })
 
 def post_share(request, post_id):

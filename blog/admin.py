@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Post, Comment, Review
+from .models import Post, Comment, Review, Game
 from pagedown.widgets import AdminPagedownWidget
 from django.db import models
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'author', 'publish', 'status')
+    list_display = ('title', 'slug', 'author', 'publish', 'status', 'post_type')
     list_filter = ('status', 'created', 'publish', 'author')
     search_fields = ('title', 'body')
     prepopulated_fields = {'slug': ('title',)}
@@ -30,6 +30,16 @@ class ReviewAdmin(admin.ModelAdmin):
         models.TextField: {'widget': AdminPagedownWidget},
     }
 
+class GameAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'author', 'publish', 'status')
+    list_filter = ('status', 'created', 'publish', 'author')
+    search_fields = ('title', 'body')
+    prepopulated_fields = {'slug': ('title',)}
+    raw_id_fields = ('author',)
+    date_hierarchy = 'publish'
+    ordering = ['status', 'publish']
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Game, GameAdmin)

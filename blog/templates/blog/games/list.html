@@ -3,11 +3,15 @@
      <div class="col-lg-12">
         <h2 class="page-header">Portfolio Heading</h2>
     </div>
-    {% for review in reviews %}
+    {% for game in games %}
     <div class="col-md-4 col-sm-6">
-        <a href="{{ review.get_absolute_url }}">
-            <img class="img-responsive img-portfolio img-hover" src="{{ MEDIA_URL }}{{ review.image }}" alt="">
-       </a>
+         <div class="list-group">
+          <a href="{{ game.get_absolute_url }}" class="list-group-item active list-group-item-info">{{ game.title }}</a>
+           <a href="{{ game.get_absolute_url }}">
+            <img class="img-responsive img-portfolio img-hover img-rounded list-group-item" src="{{ MEDIA_URL }}{{ game.image }}" alt="">
+           </a>
+        </div>
+
     </div>
     {% endfor %}
 </div>
