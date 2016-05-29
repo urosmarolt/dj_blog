@@ -4,3 +4,6 @@ django_app/settings.py
 #django files 
 .idea/*
 django_app/__pycache__
+
+#system files
+docker-compose.yml

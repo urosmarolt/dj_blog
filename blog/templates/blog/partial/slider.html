@@ -10,7 +10,7 @@
     <div class="carousel-inner">
         {% for slider_review in slider_reviews %}
         <div class="item {% if slider_review.slider == 1 %}active{% endif %}">
-            <div class="fill" style="background-image:url('{{ MEDIA_URL }}{{ slider_review.image }}');"></div>
+            <div class="fill" style="background-image:url('{{ MEDIA_URL }}{{ slider_review.review_banner }}');"></div>
             <div class="carousel-caption">
                 <h2>{{ slider_review.title }}</h2>
                 <ul>
