@@ -32,18 +32,20 @@
             {% endblock %}
         </div>
         <!-- /.row -->
-
-        <!-- Reviews Section -->
-        {% block toplist %}
-            {% include "blog/review/toplist.html" %}
-        {% endblock %}
-        <!-- /.row -->
-
-        <!-- Games Section -->
-        {% block games %}
-            {% include "blog/games/list.html" %}
-        {% endblock %}
-        <!-- /.row -->
+        {% if config.REVIEWS %}
+            <!-- Reviews Section -->
+            {% block toplist %}
+                {% include "blog/review/toplist.html" %}
+            {% endblock %}
+            <!-- /.row -->
+        {% endif %}
+        {% if config.GAMES %}
+            <!-- Games Section -->
+            {% block games %}
+                {% include "blog/games/list.html" %}
+            {% endblock %}
+            <!-- /.row -->
+        {% endif %}
 
         <!-- Features Section -->
         {% block featured %}

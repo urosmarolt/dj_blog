@@ -113,3 +113,7 @@ footer {
 .thumbnail {
     height: 430px;
 }
+
+.panel-default > .panel-heading {
+    height: 140px;
+}

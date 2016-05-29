@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
-from django.template import RequestContext
+#from django.template import RequestContext
 from .models import Post, Comment, Review, Game
 from django.db.models import Count
 from .forms import EmailPostForm, CommentForm, SearchForm
-from django.http import HttpResponseRedirect
+#from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.views.generic import ListView
