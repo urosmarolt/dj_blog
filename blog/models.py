@@ -96,7 +96,7 @@ class Review(models.Model):
     image = models.ImageField(upload_to='blog/static/uploads', default='blog/static/uploads/douche1.jpg')
     review_banner = models.ImageField(upload_to='blog/static/uploads', default='blog/static/uploads/review_banner.jpg')
     thumbnail = ProcessedImageField(upload_to='static/thumbnails',
-                                    processors=[ResizeToFill(50, 30)],
+                                    processors=[ResizeToFill(50, 20)],
                                     format='JPEG',
                                     options={'quality': 60},
                                     default='blog/static/thumbnails/douche1.jpg'

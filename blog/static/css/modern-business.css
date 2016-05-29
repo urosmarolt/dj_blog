@@ -117,3 +117,11 @@ footer {
 .panel-default > .panel-heading {
     height: 140px;
 }
+
+.list-group-item-toplist {
+  padding: 5px 5px;
+}
+
+.a-toplist {
+    margin-top: 7px;
+}
