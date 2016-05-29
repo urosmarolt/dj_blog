@@ -6,12 +6,12 @@
     {% for review in reviews %}
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
-            <a href="/play/{{ review.slug }}">
+            <a href="/play/{{ review.slug }}" target="_blank">
                 <img src="{{ MEDIA_URL }}{{ review.image }}" alt="">
             </a>
             <div class="caption">
                 <h4 class="pull-right"></h4>
-                <h4><a href="/play/{{ review.slug }}">{{ review.title }}</a>
+                <h4><a href="/play/{{ review.slug }}" target="_blank">{{ review.title }}</a>
                 </h4>
                 <p>{{ review.meta_description|markdown|truncatewords:20 }}</p>
                 <p><a href="{{ review.get_absolute_url }}"><button type="button" class="btn btn-primary btn-block">Read {{ review.title }} Review</button></a></p>

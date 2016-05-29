@@ -10,14 +10,9 @@
     <div class="carousel-inner">
         {% for slider_review in slider_reviews %}
         <div class="item {% if slider_review.slider == 1 %}active{% endif %}">
-            <div class="fill" style="background-image:url('{{ MEDIA_URL }}{{ slider_review.review_banner }}');"></div>
+            <a href="/play/{{ slider_review.slug }}" target="_blank"><div class="fill" style="background-image:url('{{ MEDIA_URL }}{{ slider_review.review_banner }}');"></div></a>
             <div class="carousel-caption">
-                <h2>{{ slider_review.title }}</h2>
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                </ul>
+                <!-- <h2>{{ slider_review.title }}</h2> -->
             </div>
         </div>
         {% endfor %}
