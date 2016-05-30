@@ -5,54 +5,53 @@
 {% block header %}
     {% include "blog/partial/header.html" %}
 {% endblock %}
-<body>
-    <!-- Navigation -->
-    {% block navigation %}
-        {% sitetree_menu from "main_menu" include "trunk,topmenu" template "blog/navigation/main_menu.html" %}
+<!-- Navigation -->
+{% block navigation %}
+{% sitetree_menu from "main_menu" include "trunk,topmenu" template "blog/navigation/main_menu.html" %}
+{% endblock %}
+<!-- /.row -->
+<!-- Header Carousel -->
+{% block slider %}
+{% include "blog/partial/slider.html" %}
+{% endblock %}
+<!-- /.row -->
+<!-- Page Content -->
+<div class="container">
+{% block content %}
+{% endblock %}
+<!-- Latest News Section -->
+{% block news %}
+{% endblock %}
+<!-- /.row -->
+
+<!-- Pagination Section -->
+<div class="pagination">
+    {% block pagination %}
+        {% include "blog/post/pagination.html" with page=posts %}
+    {% endblock %}
+</div>
+<!-- /.row -->
+{% if config.REVIEWS %}
+    <!-- Reviews Section -->
+    {% block toplist %}
+        {% include "blog/review/toplist.html" %}
     {% endblock %}
     <!-- /.row -->
-    <!-- Header Carousel -->
-    {% block slider %}
-        {% include "blog/partial/slider.html" %}
+{% endif %}
+{% if config.GAMES %}
+    <!-- Games Section -->
+    {% block games %}
+        {% include "blog/games/list.html" %}
     {% endblock %}
-     <!-- /.row -->
-    <!-- Page Content -->
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-  		<!-- Latest News Section -->
-        {% block news %}
-        {% endblock %}
-        <!-- /.row -->
+    <!-- /.row -->
+{% endif %}
 
-        <!-- Pagination Section -->
-        <div class="pagination">
-            {% block pagination %}
-                {% include "blog/post/pagination.html" with page=posts %}
-            {% endblock %}
-        </div>
-        <!-- /.row -->
-        {% if config.REVIEWS %}
-            <!-- Reviews Section -->
-            {% block toplist %}
-                {% include "blog/review/toplist.html" %}
-            {% endblock %}
-            <!-- /.row -->
-        {% endif %}
-        {% if config.GAMES %}
-            <!-- Games Section -->
-            {% block games %}
-                {% include "blog/games/list.html" %}
-            {% endblock %}
-            <!-- /.row -->
-        {% endif %}
-
-        <!-- Features Section -->
-        {% block featured %}
-            {% include "blog/review/featured.html" %}
-        {% endblock %}
-        <!-- /.row -->
-        <hr>
+<!-- Features Section -->
+{% block featured %}
+    {% include "blog/review/featured.html" %}
+{% endblock %}
+<!-- /.row -->
+<hr>
 {% block footer %}
     {% include "blog/partial/footer.html" %}
 {% endblock %}

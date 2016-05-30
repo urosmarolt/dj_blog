@@ -6,204 +6,203 @@
     {% include "blog/partial/header.html" %}
 {% endblock %}
 
-<body>
 
-    <!-- Navigation -->
-    {% block navigation %}
-        {% sitetree_menu from "main_menu" include "trunk,topmenu" template "blog/navigation/main_menu.html" %}
-    {% endblock %}
-    <!-- /.row -->
+<!-- Navigation -->
+{% block navigation %}
+{% sitetree_menu from "main_menu" include "trunk,topmenu" template "blog/navigation/main_menu.html" %}
+{% endblock %}
+<!-- /.row -->
 
-    <!-- Page Content -->
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<!-- Page Content -->
+<div class="container">
 
-        <!-- Page Heading/Breadcrumbs -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">{{ review.title }}
-                    <small>Subheading</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
-                    </li>
-                    <li class="active">Services</li>
-                </ol>
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">{{ review.title }}
+            <small>Subheading</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a>
+            </li>
+            <li class="active">Services</li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+
+<!-- Image Header -->
+<div class="row">
+    <div class="col-lg-12">
+        <a href="/play/{{ review.slug }}" target="_blank"><img class="img-responsive" src="{{ MEDIA_URL }}{{ review.review_banner }}" alt=""></a>
+    </div>
+</div>
+<!-- /.row -->
+
+<!-- Service Panels -->
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Services Panels</h2>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <span class="fa-stack fa-5x">
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="panel-body">
+                <h4>Review</h4>
+                <p>Read all about what our editors think of {{ review.title }}.</p>
+                <a href="#service-one" onclick="changeTabState('service-one-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
             </div>
         </div>
-        <!-- /.row -->
-
-        <!-- Image Header -->
-        <div class="row">
-            <div class="col-lg-12">
-                <a href="/play/{{ review.slug }}" target="_blank"><img class="img-responsive" src="{{ MEDIA_URL }}{{ review.review_banner }}" alt=""></a>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <span class="fa-stack fa-5x">
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="panel-body">
+                <h4>General info</h4>
+                <p>All informations about {{ review.title }} in one place.</p>
+                <a href="#service-two" onclick="changeTabState('service-two-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
             </div>
         </div>
-        <!-- /.row -->
-
-        <!-- Service Panels -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Services Panels</h2>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <span class="fa-stack fa-5x">
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-star-half-full fa-stack-1x fa-inverse"></i>
+                </span>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Review</h4>
-                        <p>Read all about what our editors think of {{ review.title }}.</p>
-                        <a href="#service-one" onclick="changeTabState('service-one-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>General info</h4>
-                        <p>All informations about {{ review.title }} in one place.</p>
-                        <a href="#service-two" onclick="changeTabState('service-two-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-star-half-full fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Ratings</h4>
-                        <p>What do we think about {{ review.title }}? How did our players rate it?</p>
-                        <a href="#service-three" onclick="changeTabState('service-three-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Payment methods</h4>
-                        <p>Payment and withdrawal methods of {{ review.title }}.</p>
-                        <a href="#service-four" onclick="changeTabState('service-four-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
-                    </div>
-                </div>
+            <div class="panel-body">
+                <h4>Ratings</h4>
+                <p>What do we think about {{ review.title }}? How did our players rate it?</p>
+                <a href="#service-three" onclick="changeTabState('service-three-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
             </div>
         </div>
-
-        <!-- Service Tabs -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Service Tabs</h2>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <span class="fa-stack fa-5x">
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
+                </span>
             </div>
-            <div class="col-lg-12">
+            <div class="panel-body">
+                <h4>Payment methods</h4>
+                <p>Payment and withdrawal methods of {{ review.title }}.</p>
+                <a href="#service-four" onclick="changeTabState('service-four-tab')" class="btn btn-primary" data-toggle="tab">Learn More</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <ul id="myTab" class="nav nav-tabs nav-justified">
-                    <li id="service-one-tab" class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> Review</a>
-                    </li>
-                    <li id="service-two-tab" class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-info"></i> General info</a>
-                    </li>
-                    <li id="service-three-tab" class=""><a href="#service-three" data-toggle="tab"><i class="fa fa-star-half-full"></i> Ratings</a>
-                    </li>
-                    <li id="service-four-tab" class=""><a href="#service-four" data-toggle="tab"><i class="fa fa-usd"></i> Payment methods</a>
-                    </li>
-                </ul>
+<!-- Service Tabs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Service Tabs</h2>
+    </div>
+    <div class="col-lg-12">
 
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade active in" id="service-one">
-                       {{ review.review_text|markdown }}
-                    </div>
-                    <div class="tab-pane fade" id="service-two">
-                        {{ review.general_info|markdown }}
-                    </div>
-                    <div class="tab-pane fade" id="service-three">
-                        {{ review.ratings }}
-                    </div>
-                    <div class="tab-pane fade" id="service-four">
-                        {{ review.payment_methods|markdown }}
-                    </div>
-                </div>
+        <ul id="myTab" class="nav nav-tabs nav-justified">
+            <li id="service-one-tab" class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> Review</a>
+            </li>
+            <li id="service-two-tab" class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-info"></i> General info</a>
+            </li>
+            <li id="service-three-tab" class=""><a href="#service-three" data-toggle="tab"><i class="fa fa-star-half-full"></i> Ratings</a>
+            </li>
+            <li id="service-four-tab" class=""><a href="#service-four" data-toggle="tab"><i class="fa fa-usd"></i> Payment methods</a>
+            </li>
+        </ul>
 
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="service-one">
+               {{ review.review_text|markdown }}
+            </div>
+            <div class="tab-pane fade" id="service-two">
+                {{ review.general_info|markdown }}
+            </div>
+            <div class="tab-pane fade" id="service-three">
+                {{ review.ratings }}
+            </div>
+            <div class="tab-pane fade" id="service-four">
+                {{ review.payment_methods|markdown }}
             </div>
         </div>
 
-        <!-- Service List -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Bonuses</h2>
+    </div>
+</div>
+
+<!-- Service List -->
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Bonuses</h2>
+    </div>
+    <div class="col-md-4">
+        <div class="media">
+            <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
+                </span>
             </div>
-            <div class="col-md-4">
-                <div class="media">
-                    <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Exclusive Bonus</h4>
-                        <p>{{ review.exclusive_bonus|markdown }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="media">
-                    <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Match Bonus</h4>
-                        <p>{{ review.match_bonus|markdown }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="media">
-                    <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Freespins</h4>
-                        <p>{{ review.freespins|markdown }}</p>
-                    </div>
-                </div>
+            <div class="media-body">
+                <h4 class="media-heading">Exclusive Bonus</h4>
+                <p>{{ review.exclusive_bonus|markdown }}</p>
             </div>
         </div>
-        <!-- /.row -->
+    </div>
+    <div class="col-md-4">
+        <div class="media">
+            <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">Match Bonus</h4>
+                <p>{{ review.match_bonus|markdown }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="media">
+            <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">Freespins</h4>
+                <p>{{ review.freespins|markdown }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
 
-        <hr>
-        <script type="text/javascript">
-            function changeTabState(id) {
-                tabLis = document.getElementById('myTab').getElementsByTagName('li');
-                for (var i = 0; i < tabLis.length; i++) {
-                    tabLis[i].className = '';
-                }
-                document.getElementById(id).className = 'active';
-            }
-        </script>
+<hr>
+<script type="text/javascript">
+    function changeTabState(id) {
+        tabLis = document.getElementById('myTab').getElementsByTagName('li');
+        for (var i = 0; i < tabLis.length; i++) {
+            tabLis[i].className = '';
+        }
+        document.getElementById(id).className = 'active';
+    }
+</script>
 {% block footer %}
     {% include "blog/partial/footer.html" %}
 {% endblock %}
