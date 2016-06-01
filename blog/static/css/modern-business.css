@@ -125,3 +125,7 @@ footer {
 .a-toplist {
     margin-top: 7px;
 }
+
+.image-size a > img {
+    height: 225px;
+}

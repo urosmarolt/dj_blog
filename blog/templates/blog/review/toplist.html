@@ -5,7 +5,7 @@
     </div>
     {% for review in reviews %}
     <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
+        <div class="thumbnail image-size">
             <a href="/play/{{ review.slug }}" target="_blank">
                 <img src="{{ MEDIA_URL }}{{ review.image }}" alt="">
             </a>

@@ -85,6 +85,7 @@ class Review(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, related_name='review_posts')
     featured = models.BooleanField(default=False)
+    featured_text = models.TextField(default="Featured text")
     slider = models.IntegerField()
     meta_keywords = models.CharField(max_length=200, default="Meta Keywords")
     meta_description = models.TextField(default="Meta Description")

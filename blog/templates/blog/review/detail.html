@@ -133,7 +133,12 @@
                 {{ review.general_info|markdown }}
             </div>
             <div class="tab-pane fade" id="service-three">
-                {{ review.ratings }}
+                {% for i in review.ratings|get_range %}
+                    <span class="glyphicon glyphicon-star"></span>
+                {% endfor %}
+                {% for i in review.ratings|substract|get_range %}
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                {% endfor %}
             </div>
             <div class="tab-pane fade" id="service-four">
                 {{ review.payment_methods|markdown }}
