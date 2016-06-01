@@ -129,3 +129,7 @@ footer {
 .image-size a > img {
     height: 225px;
 }
+
+.fa-stack-1em {
+    width: 1em;
+}

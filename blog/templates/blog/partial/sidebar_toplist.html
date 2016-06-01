@@ -3,7 +3,7 @@
     <h4  class="list-group-item sidebar_block_header">Editors Pick</h4>
 {% for review in reviews %}
     <p class="list-group-item list-group-item-toplist">
-        <span class="fa-stack fa-lg ">
+        <span class="fa-stack fa-lg fa-stack-1em">
           <strong class="fa-stack-1x text-primary">{{ forloop.counter }}</strong>
         </span>
         <a href="/reviews/{{ review.slug }}"><img src="{{ MEDIA_URL }}{{ review.thumbnail }}" alt=""> {{ review.title }}</a>
