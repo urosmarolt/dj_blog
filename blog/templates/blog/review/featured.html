@@ -21,7 +21,7 @@
             <p>{{ featured_review.featured_text|markdown}}</p>
         </div>
         <div class="col-md-4">
-            <a class="btn btn-lg btn-default btn-block btn-success" href="/play/{{ featured_review.slug }}" target="_blank">Call to Action</a>
+            <a class="btn btn-lg btn-default btn-block btn-success" href="/play/{{ featured_review.slug }}" target="_blank">{{ config.FEATURED_CTA }}</a>
         </div>
     </div>
 </div>
