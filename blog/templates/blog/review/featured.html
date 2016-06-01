@@ -1,10 +1,9 @@
 {% load blog_tags %}
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="page-header">Featured</h2>
+        <h2 class="page-header">{{ featured_review.title }}</h2>
     </div>
     <div class="col-md-6">
-        <p>{{ featured_review.title }}</p>
         <p>{{ featured_review.review_text|markdown }}</p>
     </div>
     <div class="col-md-6">
