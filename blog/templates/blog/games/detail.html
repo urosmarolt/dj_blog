@@ -22,11 +22,9 @@
         <p class="date">
             Published {{ game.publish }} by {{ game.author }}
         </p>
-        <ol class="breadcrumb">
-            <li><a href="index.html">Home</a>
-            </li>
-            <li class="active">Sidebar Page</li>
-        </ol>
+        {% block breadcrumbs %}
+            {% include "blog/navigation/breadcrumbs.html" %}
+        {% endblock %}
     </div>
 </div>
 <!-- /.row -->

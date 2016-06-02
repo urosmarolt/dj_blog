@@ -1,0 +1,16 @@
+{% load sitetree %}
+<ol class="breadcrumb">
+    <li><a href="/">Home</a>
+    </li>
+    <li class="active">
+        {% if post %}
+            {{post.title}}
+        {% endif %}
+        {% if review %}
+            {{review.title}}
+        {% endif %}
+        {% if game %}
+            {{game.title}}
+        {% endif %}
+    </li>
+</ol>

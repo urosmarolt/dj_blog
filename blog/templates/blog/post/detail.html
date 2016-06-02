@@ -10,7 +10,7 @@
 
 <!-- Navigation -->
 {% block navigation %}
-{% sitetree_menu from "main_menu" include "trunk,topmenu" template "blog/navigation/main_menu.html" %}
+    {% sitetree_menu from "main_menu" include "trunk,topmenu" template "blog/navigation/main_menu.html" %}
 {% endblock %}
 
 <!-- Page Content -->
@@ -24,11 +24,9 @@
         <p class="date">
             Published {{ post.publish }} by {{ post.author }}
         </p>
-        <ol class="breadcrumb">
-            <li><a href="index.html">Home</a>
-            </li>
-            <li class="active">Sidebar Page</li>
-        </ol>
+        {% block breadcrumbs %}
+            {% include "blog/navigation/breadcrumbs.html" %}
+        {% endblock %}
     </div>
 </div>
 <!-- /.row -->
