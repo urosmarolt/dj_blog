@@ -14,7 +14,7 @@
                 <h4><a href="/play/{{ review.slug }}" target="_blank">{{ review.title }}</a>
                 </h4>
                 <p>{{ review.meta_description|markdown|truncatewords:15 }}</p>
-                <p><a href="{{ review.get_absolute_url }}"><button type="button" class="btn btn-primary btn-block">Read {{ review.title }} Review</button></a></p>
+                <p><a href="{{ review.get_absolute_url }}"><button type="button" class="btn btn-success btn-block">{{ review.title }} Review</button></a></p>
             </div>
             <div class="ratings">
                 <p class="pull-right"><!--TODO add number of comments--></p>
