@@ -137,3 +137,7 @@ footer {
 .date{
     font-size: 12px;
 }
+
+.panel-heading {
+    padding: 2px 15px;
+}

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04bcf0f4-7e85-418f-a150-0d03e16be26c" name="Default" comment="Commited version 0.2">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/static/css/modern-business.css" afterPath="$PROJECT_DIR$/blog/static/css/modern-business.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/blog/review/detail.html" afterPath="$PROJECT_DIR$/blog/templates/blog/review/detail.html" />
     </list>
     <ignored path="django_app.iws" />
@@ -27,28 +28,38 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/django_app/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+            <state relative-caret-position="255">
+              <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/templates/blog/review/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+            <state relative-caret-position="236">
+              <caret line="141" column="23" selection-start-line="141" selection-start-column="23" selection-end-line="141" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modern-business.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blog/templates/blog/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modern-business.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blog/static/css/modern-business.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+            <state relative-caret-position="611">
+              <caret line="141" column="22" selection-start-line="141" selection-start-column="22" selection-end-line="141" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -116,14 +127,14 @@
         <option value="$PROJECT_DIR$/blog/templates/blog/partial/sidebar_toplist.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/partial/footer.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/review/toplist.html" />
-        <option value="$PROJECT_DIR$/django_app/settings.py" />
         <option value="$PROJECT_DIR$/blog/templates/blog/review/featured.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/navigation/main_menu.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/navigation/breadcrumbs.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/post/detail.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/games/detail.html" />
-        <option value="$PROJECT_DIR$/blog/static/css/modern-business.css" />
+        <option value="$PROJECT_DIR$/django_app/settings.py" />
         <option value="$PROJECT_DIR$/blog/templates/blog/review/detail.html" />
+        <option value="$PROJECT_DIR$/blog/static/css/modern-business.css" />
       </list>
     </option>
   </component>
@@ -976,14 +987,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/newsletter/subscription_activate.html" />
-    <entry file="file://$PROJECT_DIR$/blog/templates/blog/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1245">
@@ -999,6 +1002,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1110,24 +1114,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/django_app/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+        <state relative-caret-position="255">
+          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/static/css/modern-business.css">
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+        <state relative-caret-position="311">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/blog/review/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+        <state relative-caret-position="236">
+          <caret line="141" column="23" selection-start-line="141" selection-start-column="23" selection-end-line="141" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/static/css/modern-business.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="141" column="22" selection-start-line="141" selection-start-column="22" selection-end-line="141" selection-end-column="22" />
           <folding />
         </state>
       </provider>
