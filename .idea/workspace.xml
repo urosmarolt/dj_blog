@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04bcf0f4-7e85-418f-a150-0d03e16be26c" name="Default" comment="Commited version 0.2">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/blog/post/list.html" afterPath="$PROJECT_DIR$/blog/templates/blog/post/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/blog/review/toplist.html" afterPath="$PROJECT_DIR$/blog/templates/blog/review/toplist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/sitemaps.py" afterPath="$PROJECT_DIR$/blog/sitemaps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/django_app/urls.py" afterPath="$PROJECT_DIR$/django_app/urls.py" />
     </list>
     <ignored path="django_app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,12 +55,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="toplist.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="toplist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/templates/blog/review/toplist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="115" selection-start-line="16" selection-start-column="115" selection-end-line="16" selection-end-column="115" />
+            <state relative-caret-position="360">
+              <caret line="24" column="69" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="69" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sitemaps.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/blog/sitemaps.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/django_app/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+              <folding>
+                <element signature="e#643#675#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,7 +131,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/blog/templates/blog/post/share.html" />
-        <option value="$PROJECT_DIR$/blog/sitemaps.py" />
         <option value="$PROJECT_DIR$/blog/feeds.py" />
         <option value="$PROJECT_DIR$/blog/search_indexes.py" />
         <option value="$PROJECT_DIR$/blog/search/indexes/blog/post_text.txt.html" />
@@ -137,7 +160,6 @@
         <option value="$PROJECT_DIR$/blog/templates/blog/partial/slider.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/base.html" />
         <option value="$PROJECT_DIR$/blog/urls.py" />
-        <option value="$PROJECT_DIR$/django_app/urls.py" />
         <option value="$PROJECT_DIR$/blog/models.py" />
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/blog/static/font-awesome/css/font-awesome.min.css" />
@@ -155,6 +177,8 @@
         <option value="$PROJECT_DIR$/blog/static/css/modern-business.css" />
         <option value="$PROJECT_DIR$/blog/templates/blog/post/list.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/review/toplist.html" />
+        <option value="$PROJECT_DIR$/django_app/urls.py" />
+        <option value="$PROJECT_DIR$/blog/sitemaps.py" />
       </list>
     </option>
   </component>
@@ -165,7 +189,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="1329" />
+    <option name="y" value="-617" />
     <option name="width" value="1238" />
     <option name="height" value="777" />
   </component>
@@ -805,7 +830,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1238" height="777" extended-state="6" />
+    <frame x="1329" y="-617" width="1238" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34168014" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -849,12 +874,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/django_app/urls.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/blog/migrations/0016_auto_20160514_1923.py" />
     <entry file="file://$PROJECT_DIR$/blog/migrations/0015_auto_20160514_1922.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -977,20 +1008,6 @@
     <entry file="file://$PROJECT_DIR$/blog/templates/newsletter/subscription_subscribe.html" />
     <entry file="file://$PROJECT_DIR$/blog/templates/newsletter/subscription_subscribe_user.html" />
     <entry file="file://$PROJECT_DIR$/blog/templates/newsletter/common.html" />
-    <entry file="file://$PROJECT_DIR$/blog/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/django_app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/newsletter/subscription_activate.html" />
     <entry file="file://$PROJECT_DIR$/blog/models.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1161,9 +1178,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/blog/review/toplist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="115" selection-start-line="16" selection-start-column="115" selection-end-line="16" selection-end-column="115" />
+        <state relative-caret-position="360">
+          <caret line="24" column="69" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="69" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/django_app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding>
+            <element signature="e#643#675#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/sitemaps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
