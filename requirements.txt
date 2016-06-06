@@ -16,3 +16,4 @@ django-markdownx
 django-meta
 django-pagedown
 django-constance[database]
+django-robots
