@@ -26,7 +26,6 @@ def review_list(request):
                   'blog/review/toplist.html',
                   {'page': page,
                    'reviews': reviews,
-                   "meta": reviews.as_meta(request)
                    })
 
 def _get_featured_review():
@@ -61,7 +60,6 @@ def game_list(request):
                   'blog/games/list.html',
                   {'page': page,
                    'games': games,
-                   "meta": games.as_meta(request)
                    })
 
 class PostListView(ListView):
@@ -110,7 +108,9 @@ def review_detail(request, review):
                              status='published')
     return render(request,
                   'blog/review/detail.html',
-                  {'review': review})
+                  {'review': review,
+                   "meta": review.as_meta(request)
+                   })
 
 def game_detail(request, game):
     game = get_object_or_404(Game, slug=game,
@@ -122,6 +122,7 @@ def game_detail(request, game):
     return render(request,
                   'blog/games/detail.html',
                   {'game': game,
+                   "meta": game.as_meta(request)
                    })
 
 

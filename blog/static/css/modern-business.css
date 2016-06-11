@@ -141,3 +141,11 @@ footer {
 .panel-heading {
     padding: 2px 15px;
 }
+
+.navbar-brand > img {
+    display: inline-block;
+}
+
+.navbar-brand {
+    padding: 0px;
+}

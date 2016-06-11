@@ -47,6 +47,7 @@ class Post(ModelMeta, models.Model):
         'author': 'author',
     }
 
+    #TODO: Refactor
     def get_meta_keywords(self):
         return self.meta_keywords.split(",")
 
@@ -75,7 +76,7 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment by {} on {}'.format(self.name, self.post)
 
-class Review(models.Model):
+class Review(ModelMeta, models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('scheduled', 'Scheduled'),
@@ -87,7 +88,7 @@ class Review(models.Model):
     featured = models.BooleanField(default=False)
     featured_text = models.TextField(default="Featured text")
     slider = models.IntegerField()
-    meta_keywords = models.CharField(max_length=200, default="Meta Keywords")
+    meta_keywords = models.TextField()
     meta_description = models.TextField(default="Meta Description")
     tracking_link = models.CharField(max_length=250)
     review_text = models.TextField(default="Review text")
@@ -116,9 +117,13 @@ class Review(models.Model):
     _metadata = {
         'title': 'title',
         'description': 'meta_description',
-        'keywords': 'meta_keywords',
+        'keywords': 'get_meta_keywords',
         'author': 'author',
     }
+
+    # TODO: Refactor
+    def get_meta_keywords(self):
+        return self.meta_keywords.split(",")
 
     class Meta:
         ordering = ('-publish',)
@@ -143,7 +148,7 @@ class Review(models.Model):
     def __str__(self):
         return self.title
 
-class Game(models.Model):
+class Game(ModelMeta, models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('scheduled', 'Scheduled'),
@@ -152,7 +157,7 @@ class Game(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, related_name='games_posts')
-    meta_keywords = models.CharField(max_length=200, default="Meta Keywords")
+    meta_keywords = models.TextField()
     meta_description = models.TextField(default="Meta Description")
     games_link = models.TextField(default="Games URL")
     games_text = models.TextField(default="Games text")
@@ -168,9 +173,13 @@ class Game(models.Model):
     _metadata = {
         'title': 'title',
         'description': 'meta_description',
-        'keywords': 'meta_keywords',
+        'keywords': 'get_meta_keywords',
         'author': 'author',
     }
+
+    # TODO: Refactor
+    def get_meta_keywords(self):
+        return self.meta_keywords.split(",")
 
     class Meta:
         ordering = ('-publish',)
