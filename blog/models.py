@@ -95,13 +95,13 @@ class Review(ModelMeta, models.Model):
     general_info = models.TextField(default="General info")
     ratings = models.IntegerField(default=10)
     payment_methods = models.TextField(default="Payment methods")
-    image = models.ImageField(upload_to='blog/static/uploads', default='blog/static/uploads/douche1.jpg')
-    review_banner = models.ImageField(upload_to='blog/static/uploads', default='blog/static/uploads/review_banner.jpg')
-    thumbnail = ProcessedImageField(upload_to='static/thumbnails',
+    image = models.ImageField(upload_to='image', default='douche1.jpg')
+    review_banner = models.ImageField(upload_to='banner', default='review_banner.jpg')
+    thumbnail = ProcessedImageField(upload_to='thumbnails',
                                     processors=[ResizeToFill(50, 20)],
                                     format='JPEG',
                                     options={'quality': 60},
-                                    default='blog/static/thumbnails/douche1.jpg'
+                                    default='douche1.jpg'
                                     )
     exclusive_bonus = models.TextField(default="Exclusive bonus")
     match_bonus = models.TextField(default="Match bonus")
