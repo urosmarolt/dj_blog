@@ -1,23 +1,103 @@
 {% load blog_tags %}
 {% load staticfiles %}
+{% load sitetree %}
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; {{ config.APP_TITLE }} 2017</p>
-                </div>
-            </div>
-        </footer>
 
+    <!-- Brand & Clients -->
+      <div class="row">
+         <div class="col-xs-12 m-t-1">
+          <div class="title text-center"><span>Editors Pick</span></div>
+          <div class="brand-slider owl-carousel owl-theme owl-controls-top-offset owl-loaded owl-drag">
+          <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1950px;"><div class="owl-item active" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item active" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item active" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item active" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item active" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item active" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div><div class="owl-item" style="width: 165px; margin-right: 30px;"><div class="brand">
+              <a href=""><img src="{{ MEDIA_URL }}image/brand2.png" alt=""></a>
+            </div></div></div></div></div>
+        </div>
+      </div>
+      <!-- End Brand & Clients -->
     </div>
+
     <!-- /.container -->
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-4">
+            <div class="title-footer"><span>Tweeter feed</span></div>
+            <ul class="pre-scrollable">
+              {% for t in tweets %}
+                <li class="twitter-tweet">
+                    <p>
+                        {{ t.text }}
+                        <br>
+                         <a href="https://www.twitter.com/{{t.user.screen_name}}/status/{{t.id}}" target="_blank" rel="nofollow,noindex"><span class="label label-info">@{{ t.user.screen_name }}</span></a> | <span class="label label-info">{{t.created_at}}</span>
+                    </p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col-xs-6 col-md-4">
+            <div class="title-footer"><span>Information</span></div>
+              {% sitetree_menu from "footer_menu" include "trunk" template "blog/navigation/footer_menu.html" %}
+
+            <div class="title-footer"><span>What is Crypto Trading?</span></div>
+            <p>Cryptocurrency Trading is the Forex (Foreign Exchange) of cryptocurrencies. This means, you are able to trade different bitcoin and altcoin normally for USD and BTC. Cryptocurrency Trading is an alternative way to get involved in the Crypto-World!</p>
+            <ul class="follow-us">
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-rss"></i></a></li>
+            </ul>
+          </div>
+          <div class="clearfix visible-sm-block"></div>
+          <div class="col-xs-6 col-md-4">
+            <!-- RECENT POSTS WIDGET -->
+                <div class="widget">
+                    <div class="title-footer"><span>Recent Articles</span></div>
+                    <ul class="recent-posts">
+                        {% for post in posts %}
+                        <li>
+                            <div class="widget-posts-image">
+                                <a href="#"><img class="widget-posts-image" src="{{ MEDIA_URL }}posts/1.jpg" alt=""></a>
+                            </div>
+                            <div class="widget-posts-body">
+                                <h6 class="widget-posts-title"><a href="#">{{ post.title }}</a></h6>
+                                <div class="widget-posts-meta">{{ post.publish }}</div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+              <!-- END RECENT POSTS WIDGET -->
+        </div>
+      </div>
+      <div class="text-center copyright">
+        Copyright &copy; 2017 {{ config.APP_TITLE }}
+      </div>
+    </div>
+    <!-- End Footer -->
+
 
     <!-- jQuery -->
-    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="/static/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>

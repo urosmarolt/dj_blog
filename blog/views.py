@@ -10,6 +10,17 @@ from django.views.generic import ListView
 from taggit.models import Tag
 from haystack.query import SearchQuerySet
 from django.views.generic.base import RedirectView
+from twitter import *
+from django.conf import settings
+
+
+def get_tweets():
+    # configure Twitter API
+    twitter = Twitter(
+        auth=OAuth(settings.OAUTH_TOKEN, settings.OAUTH_SECRET, settings.CONSUMER_KEY, settings.CONSUMER_SECRET))
+
+    t_result = twitter.search.tweets(q='#bitcoin #ethereum', count=10)
+    return(t_result['statuses'])
 
 
 class ReviewListView(ListView):
@@ -68,7 +79,6 @@ class PostListView(ListView):
     paginate_by = 3
     template_name = 'blog/post/list.html'
 
-
 def post_list(request, tag_slug=None):
     object_list = Post.published.all().filter(post_type='post')
     tag = None
@@ -101,7 +111,9 @@ def post_list(request, tag_slug=None):
                    'games_page': games_page,
                    'featured_review': featured_review,
                    'slider_reviews': _get_slider_data(),
+                   'tweets': get_tweets()
                    })
+
 
 def review_detail(request, review):
     review = get_object_or_404(Review, slug=review,
